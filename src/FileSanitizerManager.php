@@ -1,6 +1,6 @@
 <?php
 
-namespace Portavice\LaravelFileSanitizer;
+namespace SytxLabs\LaravelFileSanitizer;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;

@@ -1,11 +1,11 @@
 <?php
 
-namespace Portavice\LaravelFileSanitizer\Rules;
+namespace SytxLabs\LaravelFileSanitizer\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Http\UploadedFile;
-use Portavice\LaravelFileSanitizer\FileSanitizerManager;
+use SytxLabs\LaravelFileSanitizer\FileSanitizerManager;
 
 class SafeFile implements ValidationRule
 {

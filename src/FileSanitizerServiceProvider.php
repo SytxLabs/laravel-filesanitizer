@@ -1,6 +1,6 @@
 <?php
 
-namespace Portavice\LaravelFileSanitizer;
+namespace SytxLabs\LaravelFileSanitizer;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
@@ -34,7 +34,7 @@ class FileSanitizerServiceProvider extends ServiceProvider
         Validator::replacer('safe_file', fn (string $message, string $attribute): string => str_replace(':attribute', $attribute, $message ?: 'The :attribute contains unsafe content.'));
 
         if (method_exists(UploadedFile::class, 'macro')) {
-            UploadedFile::macro('sanitize', function (?string $targetPath = null, bool $sanitizeAlways = false, ?string $diskName = null) {
+            UploadedFile::macro('sanitize', function (?string $targetPath = null, ?bool $sanitizeAlways = null, ?string $diskName = null) {
                 /** @var UploadedFile $this */
                 $manager = app(FileSanitizerManager::class);
                 $sourcePath = $this->getRealPath();

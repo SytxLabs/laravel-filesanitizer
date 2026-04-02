@@ -1,6 +1,6 @@
 <?php
 
-namespace Portavice\LaravelFileSanitizer\Facades;
+namespace SytxLabs\LaravelFileSanitizer\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
