@@ -1,9 +1,9 @@
 <?php
 
-namespace Portavice\LaravelFileSanitizer\Tests;
+namespace SytxLabs\LaravelFileSanitizer\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Portavice\LaravelFileSanitizer\FileSanitizerServiceProvider;
+use SytxLabs\LaravelFileSanitizer\FileSanitizerServiceProvider;
 
 abstract class TestCase extends Orchestra
 {

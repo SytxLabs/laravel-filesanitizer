@@ -1,10 +1,10 @@
 <?php
 
-namespace Portavice\LaravelFileSanitizer\Tests;
+namespace SytxLabs\LaravelFileSanitizer\Tests;
 
 use Illuminate\Support\Facades\Validator;
-use Portavice\LaravelFileSanitizer\Facades\FileSanitizer;
-use Portavice\LaravelFileSanitizer\FileSanitizerManager;
+use SytxLabs\LaravelFileSanitizer\Facades\FileSanitizer;
+use SytxLabs\LaravelFileSanitizer\FileSanitizerManager;
 
 class ServiceProviderTest extends TestCase
 {

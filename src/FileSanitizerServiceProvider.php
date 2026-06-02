@@ -31,7 +31,7 @@ class FileSanitizerServiceProvider extends ServiceProvider
             return $manager->safe($manager->processUploadedFile($value));
         });
 
-        Validator::replacer('safe_file', fn (string $message, string $attribute): string => str_replace(':attribute', $attribute, $message ?: 'The :attribute contains unsafe content.'));
+        Validator::replacer('safe_file', static fn (string $message, string $attribute): string => str_replace(':attribute', $attribute, $message ?: 'The :attribute contains unsafe content.'));
 
         if (method_exists(UploadedFile::class, 'macro')) {
             UploadedFile::macro('sanitize', function (?string $targetPath = null, ?bool $sanitizeAlways = null, ?string $diskName = null) {

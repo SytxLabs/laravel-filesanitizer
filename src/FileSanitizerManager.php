@@ -28,10 +28,25 @@ class FileSanitizerManager
         return $this->run($inputPath, $outputPath, true, $diskName);
     }
 
+    public function processString(string $data, ?string $filenameHint = null, bool|string|null $outputPath = null, bool $sanitizeAlways = false, ?string $mimeType = null): array
+    {
+        return $this->getSanitizer()->processString($data, $filenameHint, $outputPath, $sanitizeAlways, $mimeType);
+    }
+
+    public function processBinary(string $binaryData, ?string $filenameHint = null, bool|string|null $outputPath = null, bool $sanitizeAlways = false, ?string $mimeType = null): array
+    {
+        return $this->getSanitizer()->processBinary($binaryData, $filenameHint, $outputPath, $sanitizeAlways, $mimeType);
+    }
+
+    public function processBase64(string $base64Data, ?string $filenameHint = null, bool|string|null $outputPath = null, bool $sanitizeAlways = false, ?string $mimeType = null): array
+    {
+        return $this->getSanitizer()->processBase64($base64Data, $filenameHint, $outputPath, $sanitizeAlways, $mimeType);
+    }
+
     protected function run(string $inputPath, ?string $outputPath, bool $sanitizeAlways, ?string $diskName): array
     {
         if ($diskName === null) {
-            return $sanitizeAlways && method_exists($this->sanitizer, 'sanitizeAlways') ? $this->sanitizer->sanitizeAlways($inputPath, $outputPath) : $this->sanitizer->process($inputPath, $outputPath, $sanitizeAlways);
+            return $sanitizeAlways && method_exists($this->getSanitizer(), 'sanitizeAlways') ? $this->getSanitizer()->sanitizeAlways($inputPath, $outputPath) : $this->getSanitizer()->process($inputPath, $outputPath, $sanitizeAlways);
         }
         $disk = Storage::disk($diskName);
         if (! $disk->exists($inputPath)) {
@@ -50,7 +65,7 @@ class FileSanitizerManager
         }
         try {
             file_put_contents($tmpInput, $disk->get($inputPath));
-            $result = $sanitizeAlways && method_exists($this->sanitizer, 'sanitizeAlways') ? $this->sanitizer->sanitizeAlways($tmpInput, $tmpOutput) : $this->sanitizer->process($tmpInput, $tmpOutput, $sanitizeAlways);
+            $result = $sanitizeAlways && method_exists($this->getSanitizer(), 'sanitizeAlways') ? $this->getSanitizer()->sanitizeAlways($tmpInput, $tmpOutput) : $this->getSanitizer()->process($tmpInput, $tmpOutput, $sanitizeAlways);
             if ($outputPath !== null && is_file($tmpOutput)) {
                 $disk->put($outputPath, file_get_contents($tmpOutput));
             }
